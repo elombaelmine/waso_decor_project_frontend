@@ -45,7 +45,7 @@ export class Testimonials implements OnInit {
   }
 
   private fetchTestimonials(): void {
-    this.http.get<Testimonial[]>('http://127.0.0.1:8000/api/testimonials/')
+    this.http.get<Testimonial[]>('https://waso-decor-project-backend.onrender.com/api/testimonials/')
       .subscribe({
         next: (data) => this.allTestimonials.set(data),
         error: (err) => console.error('Could not load testimonials from Django:', err)
