@@ -74,7 +74,7 @@ export class Testimonials implements OnInit {
       'Authorization': token ? `Bearer ${token}` : ''
     });
 
-    this.http.post('http://127.0.0.1:8000/api/testimonials/', payload, { headers })
+    this.http.post('https://waso-decor-project-backend.onrender.com/api/testimonials/', payload, { headers })
       .subscribe({
         next: () => {
           this.submissionSuccess.set(true);

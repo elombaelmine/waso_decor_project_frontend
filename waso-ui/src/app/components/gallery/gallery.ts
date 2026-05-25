@@ -61,7 +61,7 @@ export class Gallery implements OnInit {
   }
 
   private fetchAdminUploads(): void {
-    this.http.get<GalleryItem[]>('http://127.0.0.1:8000/api/gallery/')
+    this.http.get<GalleryItem[]>('https://waso-decor-project-backend.onrender.com/api/gallery/')
       .subscribe({
         next: (data) => this.allGalleryItems.set(data),
         error: (err) => console.error('Could not load entries:', err)
