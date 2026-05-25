@@ -11,7 +11,7 @@ export class Auth {
   private platformId = inject(PLATFORM_ID);
 
   // Pointing directly to your local Django Dev server
-  private baseUrl = 'http://127.0.0.1:8000/api/auth';
+  private baseUrl = 'https://waso-decor-project-backend.onrender.com/api/auth';
 
   // Global reactive signal that updates the navbar instantly
   public readonly isLoggedIn = signal<boolean>(false);
