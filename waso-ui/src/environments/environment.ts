@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000' // Your Django local server link
+  apiUrl: 'https://waso-decor-project-backend.onrender.com'
 };
