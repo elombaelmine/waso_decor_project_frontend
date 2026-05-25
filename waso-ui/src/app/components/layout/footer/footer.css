@@ -1,0 +1,74 @@
+/* --- WASO DECO: EDITORIAL FOOTER (Maintains your Original HTML) --- */
+
+.footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid #E0E0E0;
+  padding: 4rem var(--page-gutter) 2rem var(--page-gutter);
+  color: #111111;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* Keeping original container */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Aligning Brand to the left */
+.footer-brand {
+  flex: 1;
+}
+
+.footer-brand h3 {
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+}
+
+.footer-brand p {
+  max-width: 320px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* Aligning Meta links to the right */
+.footer-meta {
+  flex: 1;
+  border-top: none; /* Removing your original border to match the clean look */
+  padding-top: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-location {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: #777;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-meta {
+    text-align: left;
+  }
+}

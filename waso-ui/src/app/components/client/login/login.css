@@ -1,0 +1,257 @@
+/* ==========================================================================
+   WASO DECO: LUXURY CLIENT GATEWAY LOGIN
+   ========================================================================== */
+
+.auth-wrapper {
+  background-color: #F8F5F0; /* Cream canvas color matching the gallery frame */
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem) var(--page-gutter);
+}
+
+.auth-card {
+  background-color: var(--color-bg);
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr; /* Asymmetric split layout */
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.06);
+  min-height: min(680px, calc(100svh - 4rem));
+}
+
+/* 1. LEFT ATMOSPHERIC BRAND PANE */
+.auth-brand-pane {
+  background-color: #111111; /* Deep rich onyx slate base */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* Fine-dot lookbook design lattice overlay */
+.auth-brand-pane::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.03;
+  background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.pane-overlay {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-content h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 400;
+  color: #F8F5F0;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.pane-accent-line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-accent); /* Elegant sand line */
+  margin-bottom: 2rem;
+}
+
+.brand-content p {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #aaa;
+  max-width: 320px;
+}
+
+.pane-footer-meta {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #666;
+}
+
+/* 2. RIGHT LOGIN INPUT PANE */
+.auth-form-pane {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.75rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.auth-header {
+  margin-bottom: 3.5rem;
+}
+
+.auth-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* 3. LUXURY FORM SYSTEM */
+.premium-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.form-group label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #888;
+}
+
+/* Fine structural underline style inputs over thick browser borders */
+.auth-input {
+  width: 100%;
+  background-color: transparent !important;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  transition: border-color 0.4s ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Overriding and clearing out persistent default browser background colors */
+.auth-input:-webkit-autofill,
+.auth-input:-webkit-autofill:hover, 
+.auth-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Buttons and Links */
+.auth-action-btn {
+  margin-top: 1.5rem;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-action-btn:hover:not(:disabled) {
+  background-color: var(--color-accent);
+}
+
+.auth-action-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error-toast {
+  font-size: 0.85rem;
+  color: #8b263e;
+  font-weight: 600;
+  margin: 0;
+}
+
+.auth-switcher {
+  margin-top: 3rem;
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.auth-switcher p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.toggle-link {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 1px;
+  transition: color 0.2s ease;
+}
+
+.toggle-link:hover {
+  color: var(--color-accent);
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .auth-brand-pane {
+    padding: 3rem;
+    min-height: 220px;
+  }
+  .auth-form-pane {
+    padding: 3.5rem 2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .auth-wrapper {
+    padding-inline: 0;
+    align-items: stretch;
+  }
+
+  .auth-card {
+    box-shadow: none;
+  }
+
+  .auth-brand-pane {
+    min-height: 180px;
+  }
+
+  .auth-form-pane {
+    padding-inline: 1.25rem;
+  }
+
+  .auth-action-btn {
+    width: 100%;
+  }
+}

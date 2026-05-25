@@ -1,0 +1,222 @@
+/* --- WASO DECO: HOME EDITORIAL LAYOUT --- */
+
+.home-wrapper {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* 1. HERO SECTION */
+.hero-section {
+  min-height: min(85vh, 760px);
+  display: flex;
+  align-items: center;
+  padding: clamp(4rem, 8vw, 7rem) var(--page-gutter);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.hero-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: #888;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+  margin-bottom: 2.5rem;
+  color: var(--color-text);
+}
+
+.hero-description {
+  max-width: 550px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 3.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--color-text);
+  color: #fff;
+  padding: 1.2rem 2.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+}
+
+.btn-secondary {
+  color: var(--color-text);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--color-text);
+  padding-bottom: 2px;
+}
+
+/* 2. FEATURED GRID & BOUNCY CARDS */
+.featured-section {
+  padding: clamp(4rem, 9vw, 8rem) var(--page-gutter);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 6rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.line-accent {
+  width: 50px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.collection-card {
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collection-card:hover {
+  transform: translateY(-15px);
+}
+
+.card-image-placeholder {
+  min-height: 320px;
+  height: clamp(320px, 42vw, 550px);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  margin-bottom: 2rem;
+}
+
+.card-image-placeholder::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  transition: background 0.4s ease;
+}
+
+.collection-card:hover .card-image-placeholder::before {
+  background: rgba(0,0,0,0.1);
+}
+
+.card-image-placeholder span {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-details h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-deep);
+}
+
+.card-details p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 3. TESTIMONIALS */
+.testimonial-preview {
+  padding: clamp(4rem, 9vw, 8rem) var(--page-gutter);
+  text-align: center;
+  background-color: var(--color-bg);
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 4vw, 2.2rem);
+  font-style: italic;
+  max-width: 850px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.4;
+}
+
+@media (max-width: 980px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-section {
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .hero-actions {
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .card-image-placeholder {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.author {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #888;
+}

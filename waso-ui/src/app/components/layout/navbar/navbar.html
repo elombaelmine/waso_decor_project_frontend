@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" routerLink="/">WASO DECO</a>
+
+    <div class="nav-links">
+      <a class="nav-item" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a class="nav-item" routerLink="/gallery" routerLinkActive="active">Gallery</a>
+      <a class="nav-item" routerLink="/testimonials" routerLinkActive="active">Testimonials</a>
+    </div>
+
+    <div class="nav-actions">
+      @if (!isLoggedIn()) {
+        <a class="nav-btn-primary" routerLink="/client/sign-up">Book an Event</a>
+      } @else {
+        <a class="nav-item" routerLink="/client/chat">My Portal</a>
+        <button class="nav-btn-outline" (click)="onLogout()">Logout</button>
+      }
+    </div>
+  </div>
+</nav>

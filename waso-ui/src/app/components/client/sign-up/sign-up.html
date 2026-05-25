@@ -1,0 +1,89 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    
+    <div class="auth-brand-pane">
+      <div class="pane-overlay">
+        <div class="brand-content">
+          <h2>Waso Deco</h2>
+          <div class="pane-accent-line"></div>
+          <p>Bespoke Event Design & Luxury Atmospheric Curations</p>
+        </div>
+        <footer class="pane-footer-meta">
+          <span>Based in Cameroon • Serving Exceptional Events</span>
+        </footer>
+      </div>
+    </div>
+
+    <div class="auth-form-pane">
+      <header class="auth-header">
+        <h1>Create Account</h1>
+        <p class="auth-subtitle">Register to manage your bespoke inquiries, access live designer messaging channels, and leave verified lookbook feedback.</p>
+      </header>
+
+      <form (ngSubmit)="onSignUpSubmit()" class="premium-form">
+        
+        <div class="form-group">
+          <label for="fullNameInput">Full Name</label>
+          <input type="text" id="fullNameInput" [(ngModel)]="fullName" name="fullName" required placeholder="Elomba Elmine" class="auth-input">
+        </div>
+
+        <div class="form-group">
+          <label for="emailInput">Institutional Email Address</label>
+          <input type="email" id="emailInput" [(ngModel)]="email" name="email" required placeholder="name@example.com" class="auth-input">
+        </div>
+
+        <div class="form-group">
+          <label for="phoneInput">Phone Number</label>
+          <input type="tel" id="phoneInput" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="+237 ..." class="auth-input">
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <div class="password-wrapper">
+            <input 
+              [type]="showPassword() ? 'text' : 'password'" 
+              id="passwordInput" 
+              [(ngModel)]="password" 
+              name="password" 
+              required 
+              placeholder="••••••••" 
+              class="auth-input with-icon">
+            <button type="button" class="visibility-toggle-btn" (click)="togglePasswordVisibility('pass')">
+              {{ showPassword() ? 'HIDE' : 'SHOW' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPasswordInput">Confirm Password</label>
+          <div class="password-wrapper">
+            <input 
+              [type]="showConfirmPassword() ? 'text' : 'password'" 
+              id="confirmPasswordInput" 
+              [(ngModel)]="confirmPassword" 
+              name="confirmPassword" 
+              required 
+              placeholder="••••••••" 
+              class="auth-input with-icon">
+            <button type="button" class="visibility-toggle-btn" (click)="togglePasswordVisibility('confirm')">
+              {{ showConfirmPassword() ? 'HIDE' : 'SHOW' }}
+            </button>
+          </div>
+        </div>
+
+        @if (feedbackMessage()) {
+          <p class="error-toast">{{ feedbackMessage() }}</p>
+        }
+
+        <button type="submit" class="auth-action-btn" [disabled]="isSubmitting()">
+          {{ isSubmitting() ? 'Processing Workspace...' : 'Register Profile' }}
+        </button>
+      </form>
+
+      <footer class="auth-switcher">
+        <p>Already possess an active profile? <a routerLink="/client/login" class="toggle-link">Log in here</a></p>
+      </footer>
+    </div>
+
+  </div>
+</div>

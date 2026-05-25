@@ -1,0 +1,529 @@
+/* ==========================================================================
+   WASO DECO: LUXURY WORKSPACE MANAGEMENT CONSOLE
+   ========================================================================== */
+
+.dashboard-wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100svh;
+  background-color: #ffffff;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 1. SIDEBAR PROFILE & NAVIGATION ARCHITECTURE */
+.dashboard-sidebar {
+  background-color: #fcfbfa; /* Soft Ethereal Ivory variant */
+  border-right: 1px solid #eae6e1;
+  padding: 2.5rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100svh;
+  position: sticky;
+  top: 0;
+}
+
+.client-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.avatar-circle {
+  width: 42px;
+  height: 42px;
+  background-color: #111111;
+  color: #f8f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.client-meta h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111111;
+  margin: 0 0 0.15rem 0;
+}
+
+.status-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888888;
+  font-weight: 500;
+}
+
+/* Elegant Sidebar Links with Left Accent Underline Animators */
+.sidebar-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.nav-tab-btn {
+  background: none;
+  border: none;
+  padding: 0.85rem 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-indicator {
+  position: absolute;
+  left: -1.8rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #111111;
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-label {
+  font-size: 0.85rem;
+  color: #777777;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Interactive & Activated States */
+.nav-tab-btn.active .nav-indicator {
+  transform: scaleY(1);
+}
+
+.nav-tab-btn.active .nav-label,
+.nav-tab-btn:hover .nav-label {
+  color: #111111;
+  font-weight: 600;
+}
+
+.sidebar-brand-footer p {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #b0aaa0;
+  margin: 0;
+}
+
+/* 2. MAIN INTERACTION VIEWPORT PANEL */
+.dashboard-content-panel {
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5rem);
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.viewport-header {
+  margin-bottom: 3.5rem;
+}
+
+.viewport-header h2 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  font-weight: 400;
+  color: #111111;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.5px;
+}
+
+.viewport-subtitle {
+  font-size: 0.95rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.client-highlight {
+  color: var(--color-accent, #c5a059);
+  font-weight: 600;
+}
+
+/* 3. REAL-TIME LOOKBOOK COMMUNICATION HUB */
+.viewport-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100svh - 12.5rem);
+  min-height: 520px;
+}
+
+.chat-message-feed {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Minimal Custom Scrollbar Track */
+.chat-message-feed::-webkit-scrollbar,
+.form-scrollable-box::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-message-feed::-webkit-scrollbar-thumb,
+.form-scrollable-box::-webkit-scrollbar-thumb {
+  background-color: #eae6e1;
+}
+
+/* Message Bubble Architecture */
+.message-bubble-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.message-bubble-wrapper.client-aligned {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: min(65%, 680px);
+  background-color: #f7f5f2; /* Elegant soft stone tone for manager messages */
+  padding: 1.1rem 1.4rem;
+  position: relative;
+}
+
+.client-aligned .message-bubble {
+  background-color: #111111; /* Sharp onyx slate block for client text */
+}
+
+.bubble-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+  color: #333333;
+}
+
+.client-aligned .bubble-text {
+  color: #ffffff;
+}
+
+.bubble-time {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #999999;
+  display: block;
+}
+
+.client-aligned .bubble-time {
+  color: #888888;
+}
+
+/* Input Dock Section */
+.chat-input-dock {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.dock-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.dock-text-field {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 0.8rem 0;
+  font-size: 0.95rem;
+  color: #111111;
+  background: transparent;
+  transition: border-color 0.3s ease;
+  min-width: 0;
+}
+
+.dock-text-field:focus {
+  outline: none;
+  border-color: #111111;
+}
+
+.dock-send-btn {
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dock-send-btn:hover {
+  background-color: var(--color-accent, #c5a059);
+}
+
+/* 4. TECHNICAL SPECIFICATION PORTAL FORM */
+.form-scrollable-box {
+  flex-grow: 1;
+}
+
+.luxury-inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  max-width: 850px;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-element label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: #888888;
+}
+
+/* Fine Structural Lines Over Native Box Borders */
+.inquiry-input,
+.inquiry-select,
+.inquiry-textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  font-family: var(--font-sans), sans-serif;
+  color: #111111;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
+  min-width: 0;
+}
+
+.inquiry-textarea {
+  resize: none;
+  line-height: 1.6;
+}
+
+.inquiry-input:focus,
+.inquiry-select:focus,
+.inquiry-textarea:focus {
+  outline: none;
+  border-color: #111111;
+}
+
+.submit-portfolio-btn {
+  align-self: flex-start;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-portfolio-btn:hover {
+  background-color: var(--color-accent, #c5a059);
+}
+
+/* 5. USER METRIC ALERTS & CONFIRMATIONS */
+.success-alert-pane {
+  text-align: center;
+  padding: 5rem 2rem;
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-icon-frame {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #eae6e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.success-checkmark {
+  font-size: 1.4rem;
+  color: #111111;
+}
+
+.success-alert-pane h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+}
+
+.success-alert-pane p {
+  font-size: 0.95rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.return-chat-link {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: #111111;
+  cursor: pointer;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.return-chat-link:hover {
+  color: var(--color-accent, #c5a059);
+  border-color: var(--color-accent, #c5a059);
+}
+
+.system-error-banner {
+  background-color: #8b263e;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* 6. RESPONSIVE SCALE VIEWPORTS */
+@media (max-width: 1024px) {
+  .dashboard-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-sidebar {
+    height: auto;
+    position: relative;
+    padding: 2rem;
+  }
+  .client-profile-header {
+    margin-bottom: 1.5rem;
+  }
+  .sidebar-nav-links {
+    flex-direction: row;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .nav-indicator {
+    bottom: -2px;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 2px;
+    transform: scaleX(0);
+  }
+  .nav-tab-btn.active .nav-indicator {
+    transform: scaleX(1);
+  }
+  .dashboard-content-panel {
+    padding: 3rem 2rem;
+  }
+
+  .viewport-chat-container {
+    height: auto;
+    min-height: 640px;
+  }
+
+  .chat-message-feed {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .nav-indicator {
+    left: -2rem;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    transform: scaleY(0);
+  }
+  .nav-tab-btn.active .nav-indicator {
+    transform: scaleY(1);
+  }
+  .form-row-split {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .dashboard-sidebar {
+    padding: 1.5rem var(--page-gutter);
+  }
+
+  .client-profile-header {
+    align-items: flex-start;
+  }
+
+  .dashboard-content-panel {
+    padding: 2rem var(--page-gutter);
+  }
+
+  .viewport-header {
+    margin-bottom: 2rem;
+  }
+
+  .chat-message-feed {
+    padding-right: 0.5rem;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+    padding: 1rem;
+  }
+
+  .dock-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .dock-send-btn,
+  .submit-portfolio-btn {
+    width: 100%;
+  }
+
+  .success-alert-pane {
+    padding-inline: 0;
+  }
+}

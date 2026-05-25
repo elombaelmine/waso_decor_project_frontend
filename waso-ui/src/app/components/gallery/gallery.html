@@ -1,0 +1,78 @@
+<div class="gallery-wrapper">
+  <header class="gallery-header">
+    <span class="gallery-subtitle">The Portfolio</span>
+    <h1>Our Curation Gallery</h1>
+    <div class="line-accent"></div>
+    <p>Filter our bespoke design collections by theme or aesthetic color palette.</p>
+  </header>
+
+  <div class="filter-panel">
+    <div class="dropdown-group">
+      <label for="eventTypeSelect">Event Framework</label>
+      <div class="custom-select-wrapper">
+        <select id="eventTypeSelect" [(ngModel)]="selectedEventType" class="gallery-select">
+          @for (type of availableEventTypes(); track type) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="dropdown-group">
+      <label for="colorSelect">Color Theme</label>
+      <div class="custom-select-wrapper">
+        <select id="colorSelect" [(ngModel)]="selectedColor" class="gallery-select">
+          @for (color of availableColors(); track color) {
+            <option [value]="color">{{ color }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <main class="gallery-grid">
+    @for (item of filteredGalleryItems(); track item.id) {
+      <div class="gallery-card" (click)="openDetailModal(item)">
+        <div class="image-wrapper">
+          <img [src]="item.image" [alt]="item.title" class="gallery-img" />
+          <div class="image-hover-overlay">
+            <span class="view-details-text">View Curation Details</span>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-results">
+        <p>No design combinations match both selections currently. Try resetting a filter!</p>
+      </div>
+    }
+  </main>
+
+  @if (selectedItem(); as item) {
+    <div class="modal-backdrop" (click)="closeDetailModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close-btn" (click)="closeDetailModal()">&times;</button>
+        
+        <div class="modal-body-split">
+          <div class="modal-image-pane">
+            <img [src]="item.image" [alt]="item.title" />
+          </div>
+          
+          <div class="modal-text-pane">
+            <span class="modal-meta-tag">{{ item.event_type }}</span>
+            <h2 class="modal-design-title">{{ item.title }}</h2>
+            <div class="pane-divider"></div>
+            
+            <div class="design-specs">
+              <p><strong>Aesthetic Palette:</strong> <span class="color-badge">{{ item.primary_color }}</span></p>
+              <p><strong>Environment Type:</strong> {{ item.event_type }} Setup</p>
+            </div>
+
+            <p class="design-inspiration-note">
+              This environment represents our signature customization. Use these setup attributes when submitting your custom inquiry form.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

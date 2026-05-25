@@ -1,0 +1,46 @@
+<div class="auth-wrapper">
+  <div class="auth-card smaller-gate">
+    
+    <div class="auth-form-pane centered-pane">
+      <header class="auth-header">
+        <div class="security-badge-frame">
+          <span class="security-dot"></span>
+        </div>
+        <h1>Verify Your Identity</h1>
+        <p class="auth-subtitle">We have sent a unique 6-digit verification code to your email address. Enter the code below to finish activating your lookbook portal profile.</p>
+      </header>
+
+      <form (ngSubmit)="onVerifySubmit()" class="premium-form">
+        <div class="form-group class-center-group">
+          <label for="otpCodeInput">One-Time Activation Code</label>
+          <input 
+            type="text" 
+            id="otpCodeInput" 
+            [(ngModel)]="verificationCode" 
+            name="verificationCode" 
+            maxlength="6"
+            required 
+            placeholder="000000" 
+            class="auth-input code-spacing">
+        </div>
+
+        @if (errorMessage()) {
+          <p class="error-toast">{{ errorMessage() }}</p>
+        }
+
+        <div class="form-actions">
+          <button type="submit" class="auth-action-btn" [disabled]="isSubmitting()">
+            {{ isSubmitting() ? 'Activating Profile...' : 'Confirm Account' }}
+          </button>
+        </div>
+      </form>
+
+      <footer class="auth-switcher">
+        <p>Didn't receive the credentials? 
+          <button type="button" class="resend-link-btn" (click)="resendCode()">Request a new code</button>
+        </p>
+      </footer>
+    </div>
+
+  </div>
+</div>

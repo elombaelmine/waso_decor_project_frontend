@@ -1,0 +1,70 @@
+<div class="testimonials-container">
+  
+  <header class="testimonials-header">
+    <span class="testimonials-subtitle">Kind Words</span>
+    <h1>Client Testimonials</h1>
+    <div class="line-accent"></div>
+    <p class="testimonials-desc">Read experiences from hosts who trusted us to design their unforgettable atmospheres.</p>
+  </header>
+
+  <div class="submission-area">
+    @if (isLoggedIn()) {
+      <div class="review-write-box">
+        <h3>Share Your Experience</h3>
+        <p class="form-sub-intro">We would love to hear how we helped shape your custom atmosphere.</p>
+        
+        @if (submissionSuccess()) {
+          <div class="success-alert-message">
+            &#10004; Testimonial portfolio transmitted to management! It will appear publicly once verified by the design manager.
+          </div>
+        }
+
+        @if (submissionError()) {
+          <div class="error-alert-message">
+            {{ submissionError() }}
+          </div>
+        }
+
+        <form (ngSubmit)="submitTestimonial()">
+          <div class="form-group">
+            <textarea 
+              [(ngModel)]="newReviewContent"
+              name="reviewContent"
+              placeholder="Describe the mood, texture, and execution of your setup..." 
+              class="testimonial-textarea"
+              rows="4"
+              required>
+            </textarea>
+          </div>
+          <button type="submit" class="submit-review-btn" [disabled]="!newReviewContent().trim()">
+            Publish Testimonial
+          </button>
+        </form>
+      </div>
+    } @else {
+      <div class="auth-prompt-box">
+        <p>Have we decorated an event for you? <a routerLink="/client/login" routerLinkActive="active" class="auth-link">Log in to your account</a> to write your testimonial review.</p>
+      </div>
+    }
+  </div>
+
+  <div class="section-divider"></div>
+
+  <main class="testimonials-grid">
+    @for (review of visibleTestimonials(); track review.id) {
+      <div class="testimonial-card">
+        <div class="quote-marker">“</div>
+        <p class="review-text">{{ review.content }}</p>
+        <div class="card-footer">
+          <h3 class="client-name">{{ review.client_name }}</h3>
+          <span class="verified-tag">Verified Client</span>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-reviews">
+        <p>No client reviews posted yet. Add an entry in the Django panel and check "Is visible" to see it load!</p>
+      </div>
+    }
+  </main>
+
+</div>

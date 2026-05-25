@@ -1,0 +1,280 @@
+/* ==========================================================================
+   WASO DECO: CLIENT TESTIMONIAL SYSTEM
+   ========================================================================== */
+
+.testimonials-container {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: clamp(4rem, 8vw, 6rem) var(--page-gutter);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 1. SECTION HEADER */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.testimonials-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: #888;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 6vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials-header .line-accent {
+  width: 60px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin: 0 auto 2rem auto;
+}
+
+.testimonials-desc {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 2. ARCHITECTURAL SUBMISSION FORM & AUTH BOX */
+.submission-area {
+  max-width: 700px;
+  margin: 0 auto 6rem auto;
+}
+
+.auth-prompt-box {
+  text-align: center;
+  background-color: transparent;
+  border: 1px dashed var(--color-deep);
+  padding: 2.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.auth-link {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: var(--color-accent);
+}
+
+.review-write-box h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.form-sub-intro {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.testimonial-textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  padding: 1rem 0;
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  resize: none;
+  transition: border-color 0.4s ease;
+}
+
+.testimonial-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.submit-review-btn {
+  margin-top: 1.5rem;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-review-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+}
+
+.submit-review-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Alert Boxes */
+.success-alert-message {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.error-alert-message {
+  color: #8b263e;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0,0,0,0.06);
+  margin-bottom: 6rem;
+}
+
+/* 3. PREMIUM GRID & ASYMMETRICAL CARDS */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.testimonial-card {
+  background: #ffffff;
+  padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.02);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dynamic offset logic creating a subtle, curated stagger effect */
+.testimonial-card:nth-child(even) {
+  transform: translateY(2rem);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card:nth-child(even):hover {
+  transform: translateY(1.5rem);
+}
+
+.quote-marker {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.25;
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  pointer-events: none;
+}
+
+.review-text {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2.5rem;
+}
+
+.card-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.client-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.verified-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-deep);
+  font-weight: 600;
+}
+
+.no-reviews {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .testimonial-card:nth-child(even) {
+    transform: none;
+  }
+  .testimonial-card:nth-child(even):hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-header {
+    margin-bottom: 3rem;
+  }
+
+  .submission-area {
+    margin-bottom: 4rem;
+  }
+
+  .auth-prompt-box {
+    padding: 1.5rem;
+  }
+
+  .submit-review-btn {
+    width: 100%;
+  }
+
+  .section-divider {
+    margin-bottom: 4rem;
+  }
+}

@@ -1,0 +1,70 @@
+<div class="home-wrapper">
+  
+  <header class="hero-section">
+    <div class="hero-content">
+      <span class="hero-subtitle">Bespoke Event Styling & Design</span>
+      <h1 class="hero-title">Elevating Spaces.<br>Inspiring Moments.</h1>
+      <p class="hero-description">
+        For curators, dreamers, and professional event planners. We transform standard venues into breathtaking, atmospheric realities using striking spatial design and premium floral concepts.
+      </p>
+      <div class="hero-actions">
+        @if (!isLoggedIn()) {
+          <a class="btn-primary" routerLink="/client/sign-up">Inquire About An Event</a>
+        } @else {
+          <a class="btn-primary" routerLink="/client/chat">Go to My Portal</a>
+        }
+        <a class="btn-secondary" routerLink="/gallery">Explore Lookbook</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>The Featured Collections</h2>
+      <div class="line-accent"></div>
+      <p>A hand-picked glimpse into our latest atmospheric transformations.</p>
+    </div>
+
+    <div class="featured-grid">
+      
+      <div class="collection-card">
+        <div class="card-image-placeholder" style="background-image: url('wedding.jpeg');">
+          <span>Premium Wedding Gala Layout</span>
+        </div>
+        
+        <div class="card-details">
+          <h3>Minimalist Romance</h3>
+          <p>Soft drapes, warm candle arrays, and clean botanical installations.</p>
+        </div>
+      </div>
+
+     <div class="collection-card">
+      <div class="card-image-placeholder" [style.background-image]="'url(coporate.jpeg)'">
+        <span>Corporate Banquet Layout</span>
+      </div>
+      <div class="card-details">
+        <h3>Modern Sophistication</h3>
+        <p>Sharp monochrome geometries blended with structural pastel accents.</p>
+      </div>
+    </div>
+
+    <div class="collection-card">
+      <div class="card-image-placeholder" [style.background-image]="'url(intimate.jpeg)'">
+        <span>Intimate Luxury Banquet</span>
+      </div>
+      <div class="card-details">
+        <h3>Bespoke Intimacy</h3>
+        <p>Rich texturing, custom lighting scapes, and elite tabletop curation.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="testimonial-preview">
+    <div class="preview-card">
+      <p class="quote">"Waso Deco doesn't just decorate rooms; they completely shift the mood. Every event planner we co-hosted with was absolutely mesmerized by the ambient precision."</p>
+      <span class="author">— Elite Galas Inc, Corporate Coordinator</span>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,217 @@
+/* ==========================================================================
+   WASO DECO: FIXED IDENTITY VERIFICATION GATEWAY
+   ========================================================================== */
+
+.auth-wrapper {
+  background-color: #F8F5F0; /* Clean lookbook cream canvas background */
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem) var(--page-gutter);
+  box-sizing: border-box;
+}
+
+/* Base structural layout container fix */
+.auth-card.smaller-gate {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px; /* Locked down explicit layout block */
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.03);
+  border: none;
+  box-sizing: border-box;
+}
+
+.auth-form-pane.centered-pane {
+  padding: clamp(3rem, 7vw, 4.5rem) clamp(1.5rem, 6vw, 3.5rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* SECURITY GEOMETRIC HEADER */
+.auth-header {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.security-badge-frame {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #111111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.security-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent, #c5a059);
+  border-radius: 50%;
+}
+
+.auth-header h1 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.9rem, 6vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: #111111;
+  margin: 0 0 1rem 0;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666666;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* FORM LAYOUT SYSTEM */
+.premium-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  box-sizing: border-box;
+}
+
+.form-group.class-center-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-group.class-center-group label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #888888;
+}
+
+/* Text tracking structure updates */
+.auth-input.code-spacing {
+  width: 100%;
+  max-width: 240px;
+  background: transparent !important;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  padding: 0.8rem 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: monospace, var(--font-sans);
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0.65rem;
+  text-indent: 0.65rem; /* Balanced alignment fix */
+  transition: border-color 0.4s ease;
+}
+
+.auth-input.code-spacing:focus {
+  outline: none;
+  border-color: #111111;
+}
+
+.auth-input.code-spacing::placeholder {
+  color: #e0dcd5;
+}
+
+/* Safe Containment Actions wrapper */
+.form-actions {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-action-btn {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.auth-action-btn:hover:not(:disabled) {
+  background-color: var(--color-accent, #c5a059);
+}
+
+.auth-action-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error-toast {
+  font-size: 0.85rem;
+  color: #8b263e;
+  font-weight: 600;
+  margin: -1rem 0 0 0;
+  text-align: center;
+}
+
+/* SYSTEM SWITCHER FOOTER */
+.auth-switcher {
+  width: 100%;
+  margin-top: 2.5rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-switcher p {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0;
+}
+
+.resend-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111111;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-accent, #c5a059);
+  padding-bottom: 1px;
+  display: inline-block;
+  margin-left: 0.2rem;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.resend-link-btn:hover {
+  color: var(--color-accent, #c5a059);
+  border-bottom-color: #111111;
+}
+
+@media (max-width: 600px) {
+  .auth-form-pane.centered-pane {
+    padding: 3rem 1.25rem;
+  }
+
+  .auth-input.code-spacing {
+    max-width: 210px;
+    font-size: 1.5rem;
+    letter-spacing: 0.45rem;
+    text-indent: 0.45rem;
+  }
+}

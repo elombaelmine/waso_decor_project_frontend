@@ -1,0 +1,159 @@
+<div class="dashboard-wrapper">
+  
+  <aside class="dashboard-sidebar">
+    <div class="client-profile-header">
+      <div class="avatar-circle">WC</div>
+      <div class="client-meta">
+        <h3>Verified Client</h3>
+        <span class="status-badge">Workspace Activated</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav-links">
+      <button 
+        class="nav-tab-btn" 
+        [class.active]="activeTab() === 'chat'" 
+        (click)="switchView('chat')">
+        <span class="nav-indicator"></span>
+        <span class="nav-label">Chat with Manager</span>
+      </button>
+      
+      <button 
+        class="nav-tab-btn" 
+        [class.active]="activeTab() === 'inquiry'" 
+        (click)="switchView('inquiry')">
+        <span class="nav-indicator"></span>
+        <span class="nav-label">Submit Event Inquiry</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-brand-footer">
+      <p>Waso Deco &copy; 2026</p>
+    </div>
+  </aside>
+
+  <main class="dashboard-content-panel">
+    
+    @if (errorMessage()) {
+      <div class="system-error-banner">
+        <p>{{ errorMessage() }}</p>
+      </div>
+    }
+
+    @if (activeTab() === 'chat') {
+      <div class="viewport-chat-container">
+        <header class="viewport-header">
+          <h2>Design Room Chat</h2>
+          <p class="viewport-subtitle">
+            Welcome, <span class="client-highlight">{{ userEmail }}</span>. Direct live tracking feed with Waso atmospheric managers.
+          </p>
+        </header>
+
+        <div class="chat-message-feed">
+          @for (msg of messageLog(); track msg.id) {
+            <div class="message-bubble-wrapper" [class.client-aligned]="msg.sender === 'client'">
+              <div class="message-bubble">
+                <p class="bubble-text">{{ msg.text }}</p>
+                <span class="bubble-time">{{ msg.timestamp }}</span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <footer class="chat-input-dock">
+          <form (ngSubmit)="dispatchChatMessage()" class="dock-form">
+            <input 
+              type="text" 
+              [(ngModel)]="newMessageText" 
+              name="newMessageText"
+              placeholder="Write an architectural update note here..." 
+              autocomplete="off"
+              class="dock-text-field">
+            <button type="submit" class="dock-send-btn">Send</button>
+          </form>
+        </footer>
+      </div>
+    }
+
+    @if (activeTab() === 'inquiry') {
+      <div class="viewport-inquiry-container">
+        <header class="viewport-header">
+          <h2>Bespoke Event Specification</h2>
+          <p class="viewport-subtitle">Fill out your technical parameters to submit an inquiry packet directly to management.</p>
+        </header>
+
+        <div class="form-scrollable-box">
+          @if (inquirySubmitted()) {
+            <div class="success-alert-pane">
+              <div class="success-icon-frame">
+                <span class="success-checkmark">✓</span>
+              </div>
+              <h3>Inquiry Portfolio Transmitted</h3>
+              <p>Your choices are logged. Use the chat window to confirm appointment availability with the design manager.</p>
+              <button class="return-chat-link" (click)="switchView('chat')">Return to Chat Room</button>
+            </div>
+          } @else {
+            <form (ngSubmit)="sendInquiryForm()" class="luxury-inquiry-form">
+              
+              <div class="form-row-split">
+                <div class="form-element">
+                  <label for="executionSpace">Atmosphere / Event Type</label>
+                  <select id="executionSpace" [(ngModel)]="eventType" name="eventType" required class="inquiry-select">
+                    <option value="" disabled selected>Select execution space...</option>
+                    <option value="Bespoke Wedding Curation">Luxury Wedding Curation</option>
+                    <option value="Corporate Gala Portfolio">Corporate Gala Portfolio</option>
+                    <option value="Premium Private Soirée">Premium Private Soirée</option>
+                    <option value="Bespoke Architectural Setup">Bespoke Architectural Setup</option>
+                  </select>
+                </div>
+
+                <div class="form-element">
+                  <label for="eventDate">Proposed Event Date</label>
+                  <input id="eventDate" type="date" [(ngModel)]="eventDate" name="eventDate" required class="inquiry-input">
+                </div>
+              </div>
+
+              <div class="form-row-split">
+                <div class="form-element">
+                  <label for="locationTown">Target Town / Region Location</label>
+                  <input id="locationTown" type="text" [(ngModel)]="town" name="town" required placeholder="e.g., Yaoundé" class="inquiry-input">
+                </div>
+
+                <div class="form-element">
+                  <label for="budgetMetric">Estimated Budget Metric (XAF)</label>
+                  <input id="budgetMetric" type="number" [(ngModel)]="budgetEstimate" name="budgetEstimate" required placeholder="e.g., 2000000" class="inquiry-input">
+                </div>
+              </div>
+
+              <div class="form-row-split">
+                <div class="form-element">
+                  <label for="guestMetrics">Estimated Guest Metrics</label>
+                  <input id="guestMetrics" type="number" [(ngModel)]="guestCount" name="guestCount" required placeholder="e.g., 250" class="inquiry-input">
+                </div>
+
+                <div class="form-element">
+                  <label for="colorSwatch">Color Swatch Preferences</label>
+                  <input id="colorSwatch" type="text" [(ngModel)]="colorPalette" name="colorPalette" required placeholder="e.g., Ivory, Gold, Sage Green" class="inquiry-input">
+                </div>
+              </div>
+
+              <div class="form-element">
+                <label for="specificDetails">Specific Decoration & Curation Requirements</label>
+                <textarea 
+                  id="specificDetails"
+                  [(ngModel)]="specificDetails" 
+                  name="specificDetails" 
+                  rows="4" 
+                  placeholder="Detail any grand floral structures, stage drapes, or light mapping styles requested..." 
+                  class="inquiry-textarea"></textarea>
+              </div>
+
+              <button type="submit" class="submit-portfolio-btn">Transmit Inquiry Specification</button>
+            </form>
+          }
+        </div>
+      </div>
+    }
+
+  </main>
+</div>
