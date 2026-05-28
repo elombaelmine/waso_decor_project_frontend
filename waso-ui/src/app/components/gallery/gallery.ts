@@ -61,12 +61,16 @@ export class Gallery implements OnInit {
   }
 
   private fetchAdminUploads(): void {
-    this.http.get<GalleryItem[]>('https://waso-decor-project-backend.onrender.com/api/gallery/')
-      .subscribe({
-        next: (data) => this.allGalleryItems.set(data),
-        error: (err) => console.error('Could not load entries:', err)
-      });
-  }
+  console.log("Attempting to fetch...");
+  this.http.get<GalleryItem[]>('https://waso-decor-project-backend.onrender.com/api/gallery/')
+    .subscribe({
+      next: (data) => {
+        console.log("Data successfully arrived:", data); // Check this in the Console tab
+        this.allGalleryItems.set(data);
+      },
+      error: (err) => console.error('Could not load entries:', err)
+    });
+}
 
   // Action methods to engage the pop-up modal overlay
   protected openDetailModal(item: GalleryItem): void {
