@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'client/sign-up', component: SignUp },     // 1st Step: Enter user credentials
   { path: 'client/otp-verify', component: OtpVerify }, // 2nd Step: Verify One-Time Email Code
   { path: 'client/login', component: Login },         // 3rd Step: Securely access dashboard
-  { path: 'client/chat', component: Chat},           // Final Destination: Client's personalized chat interface
+  { path: 'client/chat', component: Chat, canActivate: [authGuard] },           // Final Destination: Client's personalized chat interface
   
   // Wildcard Fallback - Redirects unexpected URLs safely back to home
   { path: '**', redirectTo: 'home' }

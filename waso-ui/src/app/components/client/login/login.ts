@@ -39,9 +39,14 @@ export class Login {
 
     // Dispatch credentials directly to your backend auth gateway
     this.auth.login(credentials).subscribe({
-      next: (response) => {
+      next: (response: any) => { // Updated to 'any' to allow access to response keys
         this.isSubmitting.set(false);
         console.log('Session handshakes established successfully!');
+        
+        // SECURELY SAVE THE TOKEN RECEIVED FROM DJANGO
+        if (response && response.access) {
+          localStorage.setItem('access_token', response.access);
+        }
         
         // PROGRESSION CHAIN STEP 3 SUCCESS -> Transfer user securely straight to their chat portal
         this.router.navigate(['/client/chat']); 

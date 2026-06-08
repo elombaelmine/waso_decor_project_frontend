@@ -6,16 +6,16 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const platformId = inject(PLATFORM_ID);
 
-  // Only run logic if we are in the browser
+  // 1. Only check localStorage if we are in the browser (not during SSR build)
   if (isPlatformBrowser(platformId)) {
     const token = localStorage.getItem('access_token'); 
-
+    
     if (token) {
-      return true; // Access granted
+      return true; // Access granted!
     }
   }
 
-  // Redirect to login if no token OR if we are on the server (which can't have a token)
-  router.navigate(['/client/login']); 
-  return false; // Access denied
+  // 2. If no token, redirect to login so the user is forced to authenticate
+  router.navigate(['/client/login']);
+  return false; // Stop navigation to the protected route
 };
