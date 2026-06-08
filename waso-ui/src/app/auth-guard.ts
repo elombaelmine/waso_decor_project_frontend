@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true; // Access granted
   } else {
     // Redirect to your login page if no token exists
-    router.navigate(['client/login']); 
+    router.navigate(['/client/login']); 
     return false; // Access denied
   }
 };
