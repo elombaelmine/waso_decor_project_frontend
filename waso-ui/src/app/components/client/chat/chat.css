@@ -527,3 +527,64 @@
     padding-inline: 0;
   }
 }
+/* 1. Force the sidebar to be solid black */
+.dashboard-sidebar {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* 2. Absolute override for the navigation buttons */
+.nav-tab-btn {
+  background-color: transparent !important; /* Forces no background */
+  border: none !important;
+  color: #ffffff !important; /* Sets text to white */
+  cursor: pointer;
+  padding: 1rem 0;
+  width: 100%;
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+/* 3. Remove ALL hover background effects */
+.nav-tab-btn:hover {
+  background-color: transparent !important;
+  opacity: 0.7; /* Makes it look clickable without a background box */
+}
+
+/* 4. Active state styling (Where the user is) */
+.nav-tab-btn.active {
+  background-color: transparent !important;
+  opacity: 1; /* Force visibility */
+}
+
+.nav-tab-btn.active .nav-label {
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration: underline; /* Clear visual indicator for where the user is */
+}
+
+/* 5. Force the label text to be white */
+.nav-label {
+  color: #ffffff !important;
+}
+/* 1. Force the WC avatar to stand out against the black sidebar */
+.avatar-circle {
+  background-color: #ffffff !important; /* White circle background */
+  color: #000000 !important;            /* Black text */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  font-weight: 800; /* Bold for readability */
+}
+
+/* 2. Fix the "Verified Client" text that is also fading out */
+.client-meta h3 {
+  color: #ffffff !important; /* Forces "Verified Client" to white */
+}
+
+.status-badge {
+  color: #a0a0a0 !important; /* Keeps the status badge a visible grey */
+}
