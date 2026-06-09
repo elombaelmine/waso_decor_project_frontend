@@ -4,9 +4,13 @@
    ========================================================================== */
 :root {
   --color-bg: #F4F1EA;      /* Ethereal Ivory */
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #FDFBF7;
   --color-text: #050505;    /* Onyx Charcoal */
   --color-accent: #C5A059;  /* Burnished Gold */
   --color-deep: #3A4032;    /* Deep Olive */
+  --color-muted: #666666;
+  --color-line: #DDD4C6;
   --font-serif: 'Georgia', serif;
   --font-sans: 'Inter', sans-serif;
   --page-gutter: clamp(1rem, 4vw, 4rem);

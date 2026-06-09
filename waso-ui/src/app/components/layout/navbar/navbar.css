@@ -1,9 +1,9 @@
 /* --- WASO DECO: EDITORIAL NAVBAR (Matching your existing structure) --- */
 
 .navbar {
-  background-color: #FFFFFF;
+  background-color: var(--color-surface);
   padding: 1.5rem var(--page-gutter);
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid var(--color-line);
   position: relative;
   overflow: visible;
 }
@@ -25,7 +25,7 @@
   font-size: clamp(1.7rem, 4vw, 2.5rem);
   font-weight: 500;
   letter-spacing: 0;
-  color: #000000;
+  color: var(--color-text);
   text-decoration: none;
   order: 2; /* Forces it to the middle */
   white-space: nowrap;
@@ -56,7 +56,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #000000;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   padding-bottom: 4px;
@@ -65,12 +65,12 @@
 }
 
 .nav-item.active {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--color-text);
 }
 
 /* Button styling to match the minimalist aesthetic */
 .nav-btn-primary {
-  background-color: #000000;
+  background-color: var(--color-text);
   color: #FFFFFF;
   padding: 0.6rem 1.4rem;
   font-size: 0.75rem;
@@ -84,8 +84,8 @@
 
 .nav-btn-outline {
   background: transparent;
-  border: 1px solid #000000;
-  color: #000000;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
   padding: 0.5rem 1.2rem;
   font-size: 0.75rem;
   text-transform: uppercase;
