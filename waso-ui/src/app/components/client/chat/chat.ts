@@ -81,9 +81,10 @@ getInitials(fullName: string | undefined): string {
 
   ngOnInit() {
   if (isPlatformBrowser(this.platformId)) {
+    // Everything that uses window, localStorage, or document MUST be inside here
     this.userEmail = localStorage.getItem('waso_user_email') || 'client@wasodeco.cm';
     this.profile.email = this.userEmail;
-    this.loadProfileData(); // Clean call
+    this.loadProfileData(); 
     this.fetchMessages();
     this.pollingIntervalId = setInterval(() => this.fetchMessages(), 4000);
   }

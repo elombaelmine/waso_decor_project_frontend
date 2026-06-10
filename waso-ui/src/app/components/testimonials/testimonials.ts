@@ -41,7 +41,10 @@ export class Testimonials implements OnInit {
   ngOnInit(): void {
     // Keep application state synchronized when entering this view panel
     this.authService.checkAuthenticationState();
-    this.fetchTestimonials();
+   // Wrap this in the browser check to prevent build-time HTTP errors
+    if (isPlatformBrowser(this.platformId)) {
+      this.fetchTestimonials();
+    }
   }
 
   private fetchTestimonials(): void {

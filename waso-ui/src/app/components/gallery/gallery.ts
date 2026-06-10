@@ -1,6 +1,7 @@
-import { Component, OnInit, inject, signal, computed } from '@angular/core';
+import { Component, OnInit, inject, signal, computed, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
+import { isPlatformBrowser } from '@angular/common'; // Added this
 
 interface GalleryItem {
   id: number;
@@ -19,6 +20,7 @@ interface GalleryItem {
 })
 export class Gallery implements OnInit {
   private http = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID); // Inject platformId
   
   // Base raw array stream
   private readonly allGalleryItems = signal<GalleryItem[]>([]);
@@ -57,7 +59,9 @@ export class Gallery implements OnInit {
   });
 
   ngOnInit(): void {
-    this.fetchAdminUploads();
+    if (isPlatformBrowser(this.platformId)) {
+      this.fetchAdminUploads();
+    }
   }
 
   private fetchAdminUploads(): void {
