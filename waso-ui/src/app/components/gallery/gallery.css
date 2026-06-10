@@ -154,6 +154,7 @@
   aspect-ratio: 4 / 5; /* Striking editorial vertical frame */
   overflow: hidden;
   background-color: #eee;
+  border-radius: 18px;
 }
 
 .gallery-img {
@@ -264,6 +265,7 @@
   max-height: 70vh;
   overflow: hidden;
   background-color: #eee;
+  border-radius: 15px;
 }
 
 .modal-image-pane img {

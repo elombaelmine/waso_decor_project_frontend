@@ -194,6 +194,7 @@
   background-color: #f7f5f2; /* Elegant soft stone tone for manager messages */
   padding: 1.1rem 1.4rem;
   position: relative;
+  border-radius: 15px;
 }
 
 .client-aligned .message-bubble {
@@ -587,4 +588,137 @@
 
 .status-badge {
   color: #a0a0a0 !important; /* Keeps the status badge a visible grey */
+}
+/* --- Sidebar Styles (High Priority) --- */
+.dashboard-sidebar .nav-label {
+  color: #ffffff !important;
+}
+
+.dashboard-sidebar .avatar-circle {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  font-weight: 800;
+}
+
+.dashboard-sidebar .client-meta h3 {
+  color: #ffffff !important;
+}
+
+.dashboard-sidebar .status-badge {
+  color: #a0a0a0 !important;
+}
+
+/* --- Settings View Layout --- */
+.viewport-settings-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  overflow: hidden;
+  margin-bottom: -10px;
+}
+
+/* .form-scrollable-box {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+  margin-bottom: 1.5rem;
+} */
+
+/* --- Form Elements & Curvy Inputs --- */
+.luxury-inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.inquiry-input {
+  border-radius: 20px !important;
+  padding: 12px 20px !important;
+  border: 1px solid #ccc !important;
+  width: 100% !important;
+  padding-right: 60px !important; /* Prevents text overlap with toggle */
+}
+
+.email-disabled {
+  background-color: #e9e9e9 !important;
+  cursor: not-allowed !important;
+}
+
+/* --- Profile Picture & Password UI --- */
+.profile-upload-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 2px dashed #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.avatar-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.visibility-toggle-btn {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* --- Action Button --- */
+.submit-portfolio-btn {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px !important;
+  background: #000 !important;
+  color: #fff !important;
+  padding: 12px 30px !important;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  margin-top: 1rem;
+}
+.avatar-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #555;
+  overflow: hidden; /* Ensures the image doesn't bleed out */
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

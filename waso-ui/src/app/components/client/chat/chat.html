@@ -2,7 +2,15 @@
   
   <aside class="dashboard-sidebar">
     <div class="client-profile-header">
-      <div class="avatar-circle">WD</div>
+      <div class="avatar-circle">
+      @if (previewUrl || profile.profile_pic) {
+        <img [src]="previewUrl || profile.profile_pic" alt="Profile" class="avatar-img">
+      } @else {
+        <div class="initials-box">
+          {{ getInitials(profile.fullName) }}
+        </div>
+      }
+    </div>
       <div class="client-meta">
         <h3>Verified Client</h3>
         <span class="status-badge">Workspace Activated</span>
@@ -24,6 +32,14 @@
         (click)="switchView('inquiry')">
         <span class="nav-indicator"></span>
         <span class="nav-label">Submit Event Inquiry</span>
+      </button>
+
+      <button 
+        class="nav-tab-btn" 
+        [class.active]="activeTab() === 'settings'" 
+        (click)="switchView('settings')">
+        <span class="nav-indicator"></span>
+        <span class="nav-label">Account Settings</span>
       </button>
     </nav>
 
@@ -155,5 +171,79 @@
       </div>
     }
 
+  @if (activeTab() === 'settings') {
+  <div class="viewport-settings-container">
+    <header class="viewport-header">
+      <h2>Account Settings</h2>
+      <p class="viewport-subtitle">Modify your personal details and workspace identity.</p>
+    </header>
+
+    <div class="form-scrollable-box">
+      <form (ngSubmit)="saveProfileChanges()" class="luxury-inquiry-form">
+        
+        <!-- Circular Profile Picture Upload -->
+        <div class="form-element">
+          <label>Update Profile Picture</label>
+         <div class="profile-upload-circle" (click)="fileInput.click()">
+            @if (selectedFile) {
+              <img [src]="getPreviewUrl(selectedFile)" class="avatar-preview">
+            } @else if (profile.profile_pic) {
+              <img [src]="profile.profile_pic" class="avatar-preview">
+            } @else {
+              <span>+</span>
+            }
+        </div>
+          <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-element">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="profile.fullName" name="fullName" class="inquiry-input">
+        </div>
+
+        <!-- Visible Email (Disabled) -->
+        <div class="form-element">
+          <label>Email Address</label>
+          <input type="email" [value]="profile.email" disabled class="inquiry-input email-disabled">
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-element">
+          <label>Phone Number</label>
+          <input type="tel" [(ngModel)]="profile.phoneNumber" name="phoneNumber" class="inquiry-input">
+        </div>
+
+      
+        <!-- New Password -->
+        <div class="form-element">
+          <label>New Password (Optional)</label>
+          <div class="password-wrapper">
+            <input [type]="showPassword() ? 'text' : 'password'" 
+                  [(ngModel)]="profile.password" name="password" class="inquiry-input">
+            <button type="button" class="visibility-toggle-btn" (click)="toggleVisibility('pass')">
+              {{ showPassword() ? 'HIDE' : 'SHOW' }}
+            </button>
+          </div>
+        </div>
+
+          <!-- Confirm Password -->
+          <div class="form-element">
+            <label>Confirm Password</label>
+            <div class="password-wrapper">
+              <input [type]="showConfirmPassword() ? 'text' : 'password'" 
+                    [(ngModel)]="profile.confirmPassword" name="confirmPassword" class="inquiry-input">
+              <button type="button" class="visibility-toggle-btn" (click)="toggleVisibility('confirm')">
+                {{ showConfirmPassword() ? 'HIDE' : 'SHOW' }}
+              </button>
+            </div>
+          </div>
+      </form>
+    </div>
+    <button type="submit" class="submit-portfolio-btn" (click)="saveProfileChanges()">
+      Save Profile Changes
+    </button>
+  </div>
+}
   </main>
 </div>

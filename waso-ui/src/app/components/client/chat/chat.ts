@@ -28,7 +28,24 @@ export class Chat implements OnInit, OnDestroy {
   colorPalette: string = '';
   specificDetails: string = '';
   budgetEstimate: number | null = null; 
-  town: string = 'Yaoundé';             
+  town: string = 'Yaoundé';         
+  
+  // Settings Properties
+  profile = { fullName: '', email: '', phoneNumber: '', password: '' ,profile_pic: null,confirmPassword: ''};
+  selectedFile: File | null = null;
+
+  // Add this near your other variables (like selectedFile)
+  previewUrl: string | null = null;
+
+  // 2. Add visibility signal
+  protected showPassword = signal<boolean>(false);
+  protected showConfirmPassword = signal<boolean>(false);
+
+// 3. Add toggle method
+  protected toggleVisibility(field: 'pass' | 'confirm') {
+    if (field === 'pass') this.showPassword.update(v => !v);
+    else this.showConfirmPassword.update(v => !v);
+  }
 
   // Client Identity UI Binding Variable
   userEmail: string = ''; 
@@ -40,19 +57,37 @@ export class Chat implements OnInit, OnDestroy {
   
   private pollingIntervalId: any;
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      // Extract user identity directly from local storage profile tracking keys
-      this.userEmail = localStorage.getItem('waso_user_email') || 'client@wasodeco.cm';
 
-      this.fetchMessages();
 
-      // Maintain background streaming synchronization loop
-      this.pollingIntervalId = setInterval(() => {
-        this.fetchMessages();
-      }, 4000);
-    }
+ loadProfileData() {
+  this.http.get(`${environment.apiUrl}/api/user/profile/`, { headers: this.getAuthHeaders() })
+    .subscribe((data: any) => {
+      this.profile.fullName = data.full_name; // Matches the serializer
+      this.profile.phoneNumber = data.phone_number;
+      this.profile.profile_pic = data.profile_pic;
+    });
+}
+
+getInitials(fullName: string | undefined): string {
+    if (!fullName) return 'WD'; 
+    
+    const parts = fullName.trim().split(' ');
+    const initials = parts.length > 1 
+      ? parts[0][0] + parts[parts.length - 1][0] 
+      : parts[0][0];
+      
+    return initials.toUpperCase();
   }
+
+  ngOnInit() {
+  if (isPlatformBrowser(this.platformId)) {
+    this.userEmail = localStorage.getItem('waso_user_email') || 'client@wasodeco.cm';
+    this.profile.email = this.userEmail;
+    this.loadProfileData(); // Clean call
+    this.fetchMessages();
+    this.pollingIntervalId = setInterval(() => this.fetchMessages(), 4000);
+  }
+}
 
   private getAuthHeaders(): HttpHeaders {
     if (!isPlatformBrowser(this.platformId)) {
@@ -65,8 +100,11 @@ export class Chat implements OnInit, OnDestroy {
   }
 
   switchView(tabName: string) {
-    this.activeTab.set(tabName);
+  this.activeTab.set(tabName);
+  if (tabName === 'settings') {
+    this.loadProfileData(); // Fetch fresh data when user enters the tab
   }
+}
 
   fetchMessages() {
     this.chatService.getMessages().subscribe({
@@ -161,6 +199,67 @@ export class Chat implements OnInit, OnDestroy {
       }
     });
   }
+
+ onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    this.selectedFile = file;
+    // Generate the URL once here and store it in the variable
+    this.previewUrl = URL.createObjectURL(file);
+  }
+}
+
+  // Replace your existing getPreviewUrl with this:
+protected getPreviewUrl(file: File | null): string {
+  return this.previewUrl || '';
+}
+
+  protected isSaving = signal<boolean>(false); // Add this at the top with other signals
+
+protected saveProfileChanges() {
+  if (this.isSaving()) return; 
+  
+  if (this.profile.password && this.profile.password !== this.profile.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  this.isSaving.set(true); 
+  
+  const formData = new FormData();
+  
+  // REQUIRED: You must append all these fields to the formData
+  formData.append('full_name', this.profile.fullName);
+  formData.append('phone_number', this.profile.phoneNumber);
+  
+  if (this.profile.password) {
+    formData.append('password', this.profile.password);
+  }
+
+  // Only append if a new image was selected
+  if (this.selectedFile) {
+    formData.append('profile_pic', this.selectedFile);
+  }
+
+  // Send the request
+  this.http.put(`${environment.apiUrl}/api/user/profile/`, formData, {
+    headers: this.getAuthHeaders() // Should contain ONLY Authorization header
+  }).subscribe({
+    next: (response: any) => {
+      this.isSaving.set(false);
+      alert('Profile updated successfully!');
+      this.selectedFile = null;
+      this.previewUrl = null; // Clear your preview
+      this.loadProfileData(); // Refresh to show updated name/image
+    },
+    error: (err) => {
+      this.isSaving.set(false);
+      console.error('Update failed', err);
+      // Helpful hint: check the console to see if the server returned a validation error
+      alert('Error updating profile: ' + (err.error?.message || 'Check console for details'));
+    }
+  });
+}
 
   ngOnDestroy() {
     if (this.pollingIntervalId) {
